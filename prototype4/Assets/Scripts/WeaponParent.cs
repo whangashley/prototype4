@@ -72,7 +72,12 @@ public class WeaponParent : MonoBehaviour
         {
             //first should stun the enemies
             //then should knockback the enemies slightly
-            Debug.Log(collider.name);
+            // Debug.Log(collider.name);
+
+            Health health;
+            if (health = collider.GetComponent<Health>()) {
+                health.GetHit(1, transform.parent.gameObject);
+            }
         }
     }
 }
