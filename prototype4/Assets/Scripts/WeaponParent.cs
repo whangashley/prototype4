@@ -70,11 +70,8 @@ public class WeaponParent : MonoBehaviour
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position,radius))
         {
-            // Health health;
-            // if(health = collider.GetComponent<Health>())
-            // {
-            //     health.GetHit(1, transform.parent.gameObject);
-            // }
+            //first should stun the enemies
+            //then should knockback the enemies slightly
             Debug.Log(collider.name);
         }
     }

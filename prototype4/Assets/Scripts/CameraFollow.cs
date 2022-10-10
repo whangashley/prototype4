@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     public Transform followTransform;
     public BoxCollider2D worldBounds;
 
-    public float xMin, xMax, yMin, yMax;
+    private float xMin, xMax, yMin, yMax;
     float camY, camX;
 
     float camSize;

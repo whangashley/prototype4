@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Agent : MonoBehaviour
 {
     // private PlayerAnimations playerAnimations;
 
@@ -12,24 +12,13 @@ public class Player : MonoBehaviour
 
     private Vector2 pointerInput, movementInput;
 
-    public Vector2 PointerInput => pointerInput;
+    public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
+    public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
+    // public Vector2 PointerInput => pointerInput;
 
     private WeaponParent weaponParent;
 
-    [SerializeField]
-    private InputActionReference movement, fire, pointerPosition;
-
-    private void OnEnable()
-    {
-        fire.action.performed += PerformFire;
-    }
-
-    private void OnDisable()
-    {
-        fire.action.performed -= PerformFire;
-    }
-
-    private void PerformFire(InputAction.CallbackContext obj)
+    public void PerformFire()
     {
         weaponParent.Fire();
     }
@@ -50,20 +39,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        pointerInput = GetPointerInput();
-        weaponParent.PointerPosition = pointerInput;
-        movementInput = movement.action.ReadValue<Vector2>().normalized;
+        // pointerInput = GetPointerInput();
+        // movementInput = movement.action.ReadValue<Vector2>().normalized;
 
         playerMover.MovementInput = movementInput;
+        weaponParent.PointerPosition = pointerInput;
 
         // AnimateCharacter();
-    }
-
-    private Vector2 GetPointerInput()
-    {
-        Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
-        mousePos.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
 }
