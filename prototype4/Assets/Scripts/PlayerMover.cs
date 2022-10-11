@@ -20,6 +20,10 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying) {
+            return;
+        }
+        
         if (MovementInput.magnitude > 0 && currentSpeed >= 0)
         {
             oldMovementInput = MovementInput;
