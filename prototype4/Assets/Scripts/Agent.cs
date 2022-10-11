@@ -37,7 +37,7 @@ public class Agent : MonoBehaviour
         // agentAnimations.PlayAnimation(movementInput);
     }
 
-    private void Update()
+    public void Update()
     {
         // pointerInput = GetPointerInput();
         // movementInput = movement.action.ReadValue<Vector2>().normalized;
