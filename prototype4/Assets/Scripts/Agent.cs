@@ -6,14 +6,16 @@ using UnityEngine.InputSystem;
 
 public class Agent : MonoBehaviour
 {
-    // private PlayerAnimations playerAnimations;
+    private AgentAnimations agentAnimations;
 
     private PlayerMover playerMover;
 
-    private Vector2 pointerInput, movementInput;
+    private Vector2 pointerInput, movementInput, fireInput;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
+    public Vector2 FireInput { get => fireInput; set => fireInput = value; }
+
     // public Vector2 PointerInput => pointerInput;
 
     private WeaponParent weaponParent;
@@ -21,11 +23,12 @@ public class Agent : MonoBehaviour
     public void PerformFire()
     {
         weaponParent.Fire();
+        agentAnimations.PlayAnimation2(fireInput);
     }
 
     private void Awake()
     {
-        // agentAnimations = GetComponentInChildren<AgentAnimations>();
+        agentAnimations = GetComponentInChildren<AgentAnimations>();
         weaponParent = GetComponentInChildren<WeaponParent>();
         playerMover = GetComponent<PlayerMover>();
     }
@@ -33,8 +36,8 @@ public class Agent : MonoBehaviour
     private void AnimateCharacter()
     {
         Vector2 lookDirection = pointerInput - (Vector2)transform.position;
-        // agentAnimations.RotateToPointer(lookDirection);
-        // agentAnimations.PlayAnimation(movementInput);
+        agentAnimations.RotateToPointer(lookDirection);
+        agentAnimations.PlayAnimation(movementInput);
     }
 
     public void Update()
@@ -45,7 +48,7 @@ public class Agent : MonoBehaviour
         playerMover.MovementInput = movementInput;
         weaponParent.PointerPosition = pointerInput;
 
-        // AnimateCharacter();
+        AnimateCharacter();
     }
 
 }
