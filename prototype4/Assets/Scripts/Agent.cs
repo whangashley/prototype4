@@ -10,13 +10,16 @@ public class Agent : MonoBehaviour
 
     private PlayerMover playerMover;
 
+    // [SerializeField]
+    // private InputActionReference movement, fire, pointerPosition;
+
     private Vector2 pointerInput, movementInput, fireInput;
 
     public Vector2 PointerInput { get => pointerInput; set => pointerInput = value; }
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
     public Vector2 FireInput { get => fireInput; set => fireInput = value; }
 
-    // public Vector2 PointerInput => pointerInput;
+    // private Vector2 PointerInput => pointerInput;
 
     private WeaponParent weaponParent;
 
@@ -50,5 +53,12 @@ public class Agent : MonoBehaviour
 
         AnimateCharacter();
     }
+
+    // private Vector2 GetPointerInput()
+    // {
+    //     Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
+    //     mousePos.z = Camera.main.nearClipPlane;
+    //     return Camera.main.ScreenToWorldPoint(mousePos);
+    // }
 
 }
