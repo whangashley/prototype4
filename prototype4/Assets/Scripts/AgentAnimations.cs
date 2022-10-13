@@ -40,4 +40,9 @@ public class AgentAnimations : MonoBehaviour
     {
         animator.SetTrigger("EnemyHit");
     }
+
+    public void PlayComeOutAnim(Vector2 comeOutInput)
+    {
+        animator.SetBool("ComeOut", true);
+    }
 }

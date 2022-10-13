@@ -229,6 +229,7 @@ TRASH CAN: "Yeah! And when I do, I'm going to give you the biggest hug."
 
 === The_end ===
 //comes out of trash can
+#anim:npc_come_out
 THE END!!!
     + [Close] -> END
 

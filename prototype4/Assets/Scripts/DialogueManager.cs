@@ -26,6 +26,13 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
 
+    private AgentAnimations agentAnimations;
+    private Vector2 comeOutInput;
+    public Vector2 ComeOutInput { get => comeOutInput; set => comeOutInput = value; }
+
+    // List<string> tags;
+    private const string ANIM_TAG = "anim";
+
     private void Awake() 
     {
         if (instance != null) 
@@ -42,6 +49,8 @@ public class DialogueManager : MonoBehaviour
 
     private void Start() 
     {
+        // tags = new List<string>();
+
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
@@ -95,10 +104,38 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = currentStory.Continue();
             //display choices, if any, for this dialogue line
             DisplayChoices();
+            // ParseTags();
+            HandleTags(currentStory.currentTags);
         }
         else
         {
             StartCoroutine(ExitDialogueMode());
+        }
+    }
+
+    private void HandleTags(List<string> currentTags) 
+    {
+        //loop through each tag and handle it accordingly
+        foreach (string tag in currentTags) {
+            //parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) {
+                Debug.LogError("tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            //handle the tag
+            switch (tagKey)
+            {
+                case ANIM_TAG:
+                    Debug.Log("anim=" + tagValue);
+                    SetAnim(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("tag came in but is not currently being handled: " + tag);
+                    break;
+            }
         }
     }
 
@@ -142,5 +179,32 @@ public class DialogueManager : MonoBehaviour
         currentStory.ChooseChoiceIndex(choiceIndex);
         PlayerInput.GetInstance().RegisterSubmitPressed();
         ContinueStory();
+    }
+    /*** Tag Parser ***/
+    /// In Inky, you can use tags which can be used to cue stuff in a game.
+    /// This is just one way of doing it. Not the only method on how to trigger events. 
+    // void ParseTags()
+    // {
+    //     tags = currentStory.currentTags;
+    //     foreach (string t in tags)
+    //     {
+    //         string prefix = t.Split(' ')[0];
+    //         string param = t.Split(' ')[1];
+
+    //         switch(prefix.ToLower())
+    //         {
+    //             case "anim":
+    //                 SetAnimation(param);
+    //                 break;
+    //             // case "color":
+    //             //     SetTextColor(param);
+    //             //     break;
+    //         }
+    //     }
+    // }
+    void SetAnim(string tagValue)
+    {
+        AgentAnimations agentAnimations = GameObject.FindObjectOfType<AgentAnimations>();
+        agentAnimations.PlayComeOutAnim(comeOutInput);
     }
 }
