@@ -31,6 +31,7 @@ public class KnockbackEffect : MonoBehaviour
         Vector2 direction = (transform.position - sender.transform.position).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
         agentAnimations.PlayFanHitAnim(fanHitInput);
+        FindObjectOfType<AudioManager>().Play("fanHitScream");
         StartCoroutine(Reset());
     }
     private IEnumerator Reset() {

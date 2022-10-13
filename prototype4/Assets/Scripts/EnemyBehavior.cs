@@ -25,6 +25,7 @@ public class EnemyBehavior : MonoBehaviour
         if(distance < chaseDistanceThreshold) {
             //face the player
             OnPointerInput?.Invoke(player.position);
+            // FindObjectOfType<AudioManager>().Play("");
             //chase the player
             Vector2 direction = player.position - transform.position;
             OnMovementInput?.Invoke(direction.normalized);

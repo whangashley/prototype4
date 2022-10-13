@@ -14,7 +14,12 @@ TRASH CAN (?): "NOOOOOOOOOOOOO!!!"
     + [SCREAM BACK???]
         -> Scream
     + [COMMUNICATE WITH IT]
-        -> Say_something2
+        -> Communicate
+
+=== Communicate ===
+"UH UM UH, HELLO?!"
+    + [Calm down calm down calm down]
+        -> Calm
 
 === Surprise ===
 "GOD YOU SCARED ME."
@@ -27,7 +32,7 @@ TRASH CAN (?): "NOOOOOOOOOOOOO!!!"
         -> Calm
 
 === Calm ===
-"I--I mean. Uh. *clears throat*"
+"I--I mean. Uh. Ehem."
     + [Talk to it. Her. Yea]
         -> Say_something2
 
@@ -89,22 +94,42 @@ TRASH CAN (?): "But...people think our music is...too different. Weird. I can't 
         -> Dunk
 
 === Advice ===
-"For every bad review, we have 100 good ones. Artists are constantly evolving. Music is vastly different. We can't please everyone--but who says we're trying to? All that matters is that we like what we make."
+"For every bad review, we have 100 good ones. Artists are constantly evolving. Music is vastly different."
     + [Continue]
-        => Insecure
+        -> Advice2
+
+=== Advice2 ===
+"We can't please everyone--but who says we're trying to? All that matters is that we like what we make."
+    + [Continue]
+        -> Insecure
 
 === Art ===
-"Remember when we were trainees, we hoped to bring something new and exciting to the industry? This is exactly that. Art is meant to challenge conventio. We take risks no other artist would dare. Give us some more credit."
+"Remember when we were trainees, we hoped to bring something new and exciting to the industry? This is exactly that."
+    + [Continue]
+        -> Art2
+
+=== Art2 ===
+"Art is meant to challenge conventions. We take risks no other artist would dare. Give us some more credit."
     + [Continue]
         -> Insecure
 
 === Dunk ===
-"Ugh, don't listen to those idiots! Let them say what they want. They aren't the ones that take risks--they have the advantage of safety. We don't play it safe. That's why people love us. We need more of that."
+"Ugh, don't listen to those idiots! Let them say what they want. They aren't the ones that take risks--they have the advantage of safety." 
+    + [Continue]
+        -> Dunk2
+
+=== Dunk2 ===
+"We don't play it safe. That's why people love us. We need more of that."
     + [Continue]
         -> Insecure
 
 === Insecure ===
-TRASH CAN: "I don't know. I just feel so...bad at this. Like every mistake is a sign I should just stop. I'm a Big Mistake made up of lots of Little Mistakes. What's the point of trying if I'm no good?"
+TRASH CAN: "I don't know. I just feel so...bad at this. Like every mistake is a sign I should just stop. I'm a Big Mistake made up of lots of Little Mistakes.
+    + [Continue]
+        -> Insecure2
+
+=== Insecure2 ===
+"And it's not like I'll be young forever...my appearance and voice will change. But even then, I won't be satisfied. It's not good enough. What's the point of trying if I'm no good?"
     + [Tell her she is good]
         -> Ult_comfort
     + [Tell her she shouldn't give up]
@@ -140,7 +165,7 @@ TRASH CAN: "...I think that's the nicest thing anyone's ever said to me."
         -> Bday
 
 === Bday === 
-TRASH CAN: "Wow, is it my birthday? Haha..."
+TRASH CAN: "Not gonna lie, this is super out of character...but I fully support and embrace it. And it's not even, like, my birthday either!"
     + [Continue]
         -> Thanks
 

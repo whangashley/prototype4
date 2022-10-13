@@ -52,6 +52,7 @@ public class PlayerInput : MonoBehaviour
     private void PerformFire(InputAction.CallbackContext obj)
     {
         OnFire?.Invoke();
+        FindObjectOfType<AudioManager>().Play("playerFireKiss");
     }
 
     private void OnDisable()
