@@ -5,12 +5,24 @@ using UnityEngine.Events;
 
 public class KnockbackEffect : MonoBehaviour
 {
+    private AgentAnimations agentAnimations;
+
+    private Vector2 fanHitInput;
+
+    public Vector2 FanHitInput { get => fanHitInput; set => fanHitInput = value; }
+
     [SerializeField]
     private Rigidbody2D rb;
 
     [SerializeField]
-    private float strength = 16, delay = 0.15f;
+    private float strength = 20, delay = 0.1f;
     public UnityEvent OnBegin, OnDone;
+
+    private void Awake()
+    {
+        agentAnimations = GetComponentInChildren<AgentAnimations>();
+
+    }
 
     public void PlayEffect(GameObject sender)
     {
@@ -18,6 +30,7 @@ public class KnockbackEffect : MonoBehaviour
         OnBegin?.Invoke();
         Vector2 direction = (transform.position - sender.transform.position).normalized;
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
+        agentAnimations.PlayFanHitAnim(fanHitInput);
         StartCoroutine(Reset());
     }
     private IEnumerator Reset() {

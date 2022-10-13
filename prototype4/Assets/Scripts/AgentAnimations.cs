@@ -35,4 +35,9 @@ public class AgentAnimations : MonoBehaviour
     {
         animator.SetTrigger("PlayerFired");
     }
+
+    public void PlayFanHitAnim(Vector2 fanHitInput)
+    {
+        animator.SetTrigger("EnemyHit");
+    }
 }
